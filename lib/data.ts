@@ -7,6 +7,7 @@ export interface Business {
   imageUrl: string;
   address: string;
 }
+
 export let businesses: Business[] = [
   {
     id: '1',
