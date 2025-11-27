@@ -1,7 +1,5 @@
 import Link from 'next/link';
 import ClientList from './components/ClientList';
-
-// ISR Requirement: Revalidate every 60 seconds
 export const revalidate = 60;
 
 async function getBusinesses() {

@@ -4,25 +4,19 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Business } from '@/lib/data';
 
-const ITEMS_PER_PAGE = 6; // Shows 6 cards per page
+const ITEMS_PER_PAGE = 6;
 
 export default function ClientList({ initialBusinesses }: { initialBusinesses: Business[] }) {
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-
-  // 1. Filter the businesses first
   const filtered = initialBusinesses.filter(b => 
     b.name.toLowerCase().includes(search.toLowerCase()) &&
     (category === '' || b.category === category)
   );
-
-  // 2. Calculate Pagination
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const currentData = filtered.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-
-  // Reset to page 1 if user searches/filters
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
     setCurrentPage(1);
@@ -35,7 +29,6 @@ export default function ClientList({ initialBusinesses }: { initialBusinesses: B
 
   return (
     <div>
-      {/* Search & Filter Section */}
       <div className="bg-white p-6 rounded-2xl shadow-xl border border-gray-100 mb-10">
         <div className="flex flex-col md:flex-row gap-4">
           <input 
@@ -60,8 +53,6 @@ export default function ClientList({ initialBusinesses }: { initialBusinesses: B
           </select>
         </div>
       </div>
-
-      {/* Grid Display */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
         {currentData.map((b) => (
           <Link key={b.id} href={`/business/${b.slug}`} className="group h-full">
@@ -98,15 +89,11 @@ export default function ClientList({ initialBusinesses }: { initialBusinesses: B
           </Link>
         ))}
       </div>
-      
-      {/* Empty State */}
       {filtered.length === 0 && (
         <div className="text-center py-20 text-gray-400">
           <p className="text-xl">No businesses found matching your criteria.</p>
         </div>
       )}
-
-      {/* Pagination Controls */}
       {totalPages > 1 && (
         <div className="flex justify-center items-center gap-4 pb-10">
           <button

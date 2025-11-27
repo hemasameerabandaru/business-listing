@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { businesses, updateBusinesses, Business } from '@/lib/data';
-import { revalidatePath } from 'next/cache'; // <--- NEW IMPORT
+import { revalidatePath } from 'next/cache'; 
 
 export async function GET() {
   return NextResponse.json(businesses);
@@ -15,8 +15,6 @@ export async function POST(request: Request) {
   };
   
   updateBusinesses([...businesses, newBusiness]);
-  
-  // <--- ADD THIS LINE: Instantly updates the homepage ISR cache
   revalidatePath('/'); 
   
   return NextResponse.json(newBusiness, { status: 201 });

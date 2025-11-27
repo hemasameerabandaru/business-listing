@@ -5,8 +5,6 @@ import Link from 'next/link';
 
 export default function Register() {
   const router = useRouter();
-  
-  // State to toggle the custom input field
   const [isCustomCategory, setIsCustomCategory] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -54,8 +52,6 @@ export default function Register() {
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow-2xl sm:rounded-2xl sm:px-10 border border-gray-100">
           <form className="space-y-6" onSubmit={handleSubmit}>
-            
-            {/* Name */}
             <div>
               <label className="block text-sm font-medium text-gray-700">Business Name</label>
               <div className="mt-1">
@@ -68,8 +64,6 @@ export default function Register() {
                 />
               </div>
             </div>
-
-            {/* Image Upload */}
             <div>
               <label className="block text-sm font-medium text-gray-700">Brand Image</label>
               <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-xl hover:border-purple-400 transition-colors bg-gray-50">
@@ -87,8 +81,6 @@ export default function Register() {
                 </div>
               </div>
             </div>
-
-            {/* Description */}
             <div>
               <label className="block text-sm font-medium text-gray-700">Description</label>
               <div className="mt-1">
@@ -100,13 +92,9 @@ export default function Register() {
                 />
               </div>
             </div>
-
-            {/* Category Section with "Add New" Feature */}
             <div>
               <label className="block text-sm font-medium text-gray-700">Category</label>
               <div className="mt-1 space-y-3">
-                
-                {/* The Dropdown */}
                 <select 
                   className="block w-full px-3 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all bg-white"
                   value={isCustomCategory ? 'Other' : formData.category}
@@ -114,7 +102,7 @@ export default function Register() {
                     const val = e.target.value;
                     if (val === 'Other') {
                       setIsCustomCategory(true);
-                      setFormData({ ...formData, category: '' }); // Clear category so user can type new one
+                      setFormData({ ...formData, category: '' }); 
                     } else {
                       setIsCustomCategory(false);
                       setFormData({ ...formData, category: val });
@@ -129,11 +117,8 @@ export default function Register() {
                   <option value="Automotive">Automotive</option>
                   <option value="Education">Education</option>
                   <option value="Retail">Retail</option>
-                  {/* NEW OPTION */}
                   <option value="Other" className="font-bold text-purple-600">+ Add Custom Category</option>
                 </select>
-
-                {/* Conditional Input Field for Custom Category */}
                 {isCustomCategory && (
                   <input
                     type="text"
@@ -145,8 +130,6 @@ export default function Register() {
                 )}
               </div>
             </div>
-
-            {/* Address */}
             <div>
               <label className="block text-sm font-medium text-gray-700">Address</label>
               <div className="mt-1">
@@ -158,8 +141,6 @@ export default function Register() {
                 />
               </div>
             </div>
-
-            {/* Submit Button */}
             <div>
               <button 
                 type="submit" 

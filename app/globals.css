@@ -4,8 +4,6 @@
   --background: #ffffff;
   --foreground: #171717;
 }
-
-/* Dark mode support */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -16,6 +14,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  /* This applies your requested Cambria font */
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }

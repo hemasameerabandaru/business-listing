@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { use } from 'react';
 
 export default function EditBusiness({ params }: { params: Promise<{ slug: string }> }) {
-  // 1. Unwrap the params to get the slug
   const resolvedParams = use(params);
   const router = useRouter();
   
@@ -13,8 +12,6 @@ export default function EditBusiness({ params }: { params: Promise<{ slug: strin
   const [formData, setFormData] = useState({
     name: '', description: '', category: '', imageUrl: '', address: ''
   });
-
-  // 2. Fetch the EXISTING data when the page loads
   useEffect(() => {
     fetch(`/api/businesses/${resolvedParams.slug}`)
       .then(res => res.json())
@@ -28,8 +25,6 @@ export default function EditBusiness({ params }: { params: Promise<{ slug: strin
         }
       });
   }, [resolvedParams.slug, router]);
-
-  // 3. Handle the Update (PUT Request)
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await fetch(`/api/businesses/${resolvedParams.slug}`, {
@@ -37,8 +32,6 @@ export default function EditBusiness({ params }: { params: Promise<{ slug: strin
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
     });
-    
-    // Redirect back to the details page
     router.push(`/business/${resolvedParams.slug}`); 
     router.refresh();
   };
@@ -64,8 +57,6 @@ export default function EditBusiness({ params }: { params: Promise<{ slug: strin
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow-2xl sm:rounded-2xl sm:px-10 border border-gray-100">
           <form className="space-y-6" onSubmit={handleSubmit}>
-            
-            {/* Name (Read-Only) */}
             <div>
               <label className="block text-sm font-medium text-gray-700">Business Name</label>
               <div className="mt-1">
@@ -77,8 +68,6 @@ export default function EditBusiness({ params }: { params: Promise<{ slug: strin
                 <p className="text-xs text-gray-400 mt-1">Name cannot be changed to prevent broken links.</p>
               </div>
             </div>
-
-            {/* Description */}
             <div>
               <label className="block text-sm font-medium text-gray-700">Description</label>
               <div className="mt-1">
@@ -90,8 +79,6 @@ export default function EditBusiness({ params }: { params: Promise<{ slug: strin
                 />
               </div>
             </div>
-
-            {/* Category */}
             <div>
               <label className="block text-sm font-medium text-gray-700">Category</label>
               <div className="mt-1">
@@ -111,8 +98,6 @@ export default function EditBusiness({ params }: { params: Promise<{ slug: strin
                 </select>
               </div>
             </div>
-
-            {/* Address */}
             <div>
               <label className="block text-sm font-medium text-gray-700">Address</label>
               <div className="mt-1">
@@ -124,8 +109,6 @@ export default function EditBusiness({ params }: { params: Promise<{ slug: strin
                 />
               </div>
             </div>
-
-            {/* Buttons */}
             <div className="flex gap-3">
               <button 
                 type="button"

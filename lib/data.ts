@@ -7,8 +7,6 @@ export interface Business {
   imageUrl: string;
   address: string;
 }
-
-// Initial mock data with REAL photos
 export let businesses: Business[] = [
   {
     id: '1',
