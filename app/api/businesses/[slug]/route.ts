@@ -1,16 +1,12 @@
 import { NextResponse } from 'next/server';
 import { businesses, updateBusinesses } from '@/lib/data';
-import { revalidatePath } from 'next/cache'; // <--- NEW IMPORT
-
-// GET: Get specific business
+import { revalidatePath } from 'next/cache';
 export async function GET(request: Request, { params }: { params: Promise<{ slug: string }> }) {
   const slug = (await params).slug;
   const business = businesses.find((b) => b.slug === slug);
   if (!business) return NextResponse.json({ error: 'Not found' }, { status: 404 });
   return NextResponse.json(business);
 }
-
-// PUT: Update business
 export async function PUT(request: Request, { params }: { params: Promise<{ slug: string }> }) {
   const slug = (await params).slug;
   const body = await request.json();
@@ -23,19 +19,17 @@ export async function PUT(request: Request, { params }: { params: Promise<{ slug
   newStore[index] = updated;
   updateBusinesses(newStore);
 
-  revalidatePath('/'); // <--- Updates Homepage List
-  revalidatePath(`/business/${slug}`); // <--- Updates Detail Page
+  revalidatePath('/'); 
+  revalidatePath(`/business/${slug}`); 
   
   return NextResponse.json(updated);
 }
-
-// DELETE: Remove business
 export async function DELETE(request: Request, { params }: { params: Promise<{ slug: string }> }) {
   const slug = (await params).slug;
   const newStore = businesses.filter((b) => b.slug !== slug);
   updateBusinesses(newStore);
   
-  revalidatePath('/'); // <--- Updates Homepage List
+  revalidatePath('/');
   
   return NextResponse.json({ success: true });
 }
