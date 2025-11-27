@@ -1,0 +1,20 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="royal_gradient" x1="0" y1="0" x2="256" y2="256" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#581c87" /> <stop offset="1" stop-color="#818cf8" /> </linearGradient>
+  </defs>
+  
+  <rect width="256" height="256" rx="60" fill="url(#royal_gradient)" />
+  
+  <text 
+    x="128" 
+    y="180" 
+    fill="white" 
+    font-family="Cambria, serif" 
+    font-size="160" 
+    font-weight="bold" 
+    text-anchor="middle"
+  >
+    B
+  </text>
+</svg>
