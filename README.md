@@ -140,8 +140,8 @@ npm start
 📡 API DocumentationSince no external database is used, the application uses an **in-memory** array located in the API route handlers.
 *Note: Data will reset if the server restarts.*
 
-###Base URL: `/api/businesses`| Method | Endpoint | Description |
-| --- | --- | --- |
+### Base URL: `/api/businesses`| Method | Endpoint | Description |
+
 | **GET** | `/api/businesses` | Fetches all available businesses. |
 | **POST** | `/api/businesses` | Creates a new business listing. |
 | **GET** | `/api/businesses/[id]` | Fetches a single business by ID or Slug. |
